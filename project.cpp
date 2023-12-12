@@ -33,6 +33,7 @@ std::string vertexShader =  readFileToString("./vertex_shader/vertex.vert");
 std::string fragmentShader1 = readFileToString("./fragment_shaders/Fractal.frag");
 std::string fragmentShader2 = readFileToString("./fragment_shaders/Drive.frag");
 std::string fragmentShader3 = readFileToString("./fragment_shaders/Space.frag");
+std::string fragmentShader4 = readFileToString("./fragment_shaders/Gyroid.frag");
 
 
 // ... (rest of the code remains unchanged)
@@ -132,7 +133,7 @@ GLuint loadDataInBuffers()
 
     return vboId;
 }
-GLuint programs[3];
+GLuint programs[4];
 int program_num = 0;
 // Initialize and put everything together
 GLuint programId;
@@ -147,10 +148,11 @@ void init()
     GLuint fShaderId1 = compileShaders(fragmentShader1, GL_FRAGMENT_SHADER);
     GLuint fShaderId2 = compileShaders(fragmentShader2, GL_FRAGMENT_SHADER);
     GLuint fShaderId3 = compileShaders(fragmentShader3, GL_FRAGMENT_SHADER);
-
+    GLuint fShaderId4 = compileShaders(fragmentShader4, GL_FRAGMENT_SHADER);
     programs[0] = linkProgram(vShaderId, fShaderId1);
     programs[1] = linkProgram(vShaderId, fShaderId2);
     programs[2] = linkProgram(vShaderId, fShaderId3);
+    programs[3] = linkProgram(vShaderId, fShaderId4);
 
     // Get the 'pos' variable location inside this program
     GLuint posAttributePosition = glGetAttribLocation(programs[0], "pos");
